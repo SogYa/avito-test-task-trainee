@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -66,4 +67,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    //Hilt
+    implementation(libs.hilt)
+    ksp(libs.hilt.ksp)
+    //Coil
+    implementation(libs.coil)
+    //Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    //Network
+    implementation (libs.retrofit)
+    implementation(libs.moshi)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 }
