@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -21,6 +22,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        val p = Properties()
+        p.load(project.rootProject.file("local.properties").reader())
+        val apiKey: String = p.getProperty("API_KEY")
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField( "String", "BACKEND_URL", "\"https://api.kinopoisk.dev/\"")
     }
 
     buildTypes {
@@ -30,11 +36,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            val p = Properties()
-            p.load(project.rootProject.file("local.properties").reader())
-            val apiKey: String = p.getProperty("API_KEY")
-            buildConfigField("String", "API_KEY", "\"$apiKey\"")
-            buildConfigField( "String", "BACKEND_URL", "\"https://api.kinopoisk.dev/\"")
         }
     }
     compileOptions {
@@ -45,6 +46,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -77,6 +79,7 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.ksp)
+    implementation(libs.androidx.hilt.navigation.compose)
     //Coil
     implementation(libs.coil)
     //Room
@@ -88,6 +91,8 @@ dependencies {
     //Network
     implementation (libs.retrofit)
     implementation(libs.moshi)
+    implementation(libs.moshi.adapters)
+    implementation(libs.converter.moshi)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 }
