@@ -26,7 +26,7 @@ android {
         p.load(project.rootProject.file("local.properties").reader())
         val apiKey: String = p.getProperty("API_KEY")
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
-        buildConfigField( "String", "BACKEND_URL", "\"https://api.kinopoisk.dev/\"")
+        buildConfigField("String", "BACKEND_URL", "\"https://api.kinopoisk.dev/v1.4/\"")
     }
 
     buildTypes {
@@ -64,7 +64,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -82,6 +85,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     //Coil
     implementation(libs.coil)
+    implementation(libs.coil.compose)
     //Room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
@@ -89,10 +93,8 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
     //Network
-    implementation (libs.retrofit)
-    implementation(libs.moshi)
-    implementation(libs.moshi.adapters)
-    implementation(libs.converter.moshi)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 }
