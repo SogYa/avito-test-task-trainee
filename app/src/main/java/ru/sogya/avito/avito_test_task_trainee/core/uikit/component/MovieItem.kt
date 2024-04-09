@@ -21,6 +21,7 @@ fun MovieExpandedItem(
     movie: Movie,
     index: Int
 ) {
+
     Row(modifier = Modifier.fillMaxSize().padding(vertical = 25.dp, horizontal = 15.dp)) {
         Box(
             modifier = Modifier.fillMaxSize()
@@ -39,7 +40,7 @@ fun MovieExpandedItem(
         }
         Column(modifier = Modifier.fillMaxWidth().weight(weight = 2f).padding(horizontal = 15.dp)) {
             Text(
-                text = "$index. ${movie.name}"
+                text = "${index + 1}. ${movie.name}"
             )
             Text(
                 text = "${movie.alternativeName}, ${movie.year}"
