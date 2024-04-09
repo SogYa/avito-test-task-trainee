@@ -31,7 +31,9 @@ class HomeVM @Inject constructor(
                 is HomeIntent.FilterByCountries -> TODO()
                 is HomeIntent.FilterByYear -> TODO()
                 is HomeIntent.SearchByName -> TODO()
-                is HomeIntent.SetSearchActive -> TODO()
+                is HomeIntent.SetSearchActive -> setState {
+                    copy(searchActive = intent.active)
+                }
             }
         }
     }
