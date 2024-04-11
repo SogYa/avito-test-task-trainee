@@ -1,10 +1,9 @@
 package ru.sogya.avito.avito_test_task_trainee.home.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import ru.sogya.avito.avito_test_task_trainee.film.domain.entity.Movie
 import ru.sogya.avito.avito_test_task_trainee.home.domain.HomeRepository
+import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 
 class MoviesPaggingSource(
     private val homeRepository: HomeRepository
@@ -27,10 +26,6 @@ class MoviesPaggingSource(
                 if (movies.isEmpty()) null else movies.size.plus(currentPageNumber).plus(1)
 
             val prevKey = if (currentPageNumber == 1) null else movies.size.minus(pageSize)
-            Log.d(
-                "check",
-                "page: $currentPageNumber, size ${movies.size}, nextKey $nextKey, previous $prevKey"
-            )
             LoadResult.Page(
                 prevKey = prevKey,
                 nextKey = nextKey,
@@ -40,6 +35,5 @@ class MoviesPaggingSource(
             e.printStackTrace()
             LoadResult.Error(e)
         }
-
     }
 }

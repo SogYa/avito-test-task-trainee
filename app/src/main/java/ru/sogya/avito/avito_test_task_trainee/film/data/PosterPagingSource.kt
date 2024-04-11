@@ -1,6 +1,5 @@
 package ru.sogya.avito.avito_test_task_trainee.film.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ru.sogya.avito.avito_test_task_trainee.film.domain.MovieRepository
