@@ -1,4 +1,6 @@
-package ru.sogya.avito.avito_test_task_trainee.film.domain.entity
+package ru.sogya.avito.avito_test_task_trainee.home.domain.entity
+
+import ru.sogya.avito.avito_test_task_trainee.core.network.ResponseObject
 
 interface Movie {
     val id: Int
@@ -14,8 +16,4 @@ interface Movie {
     val type: String
     val poster: Poster
     val logo: Logo
-}
-
-interface ResponseObject{
-    val name: String
 }
