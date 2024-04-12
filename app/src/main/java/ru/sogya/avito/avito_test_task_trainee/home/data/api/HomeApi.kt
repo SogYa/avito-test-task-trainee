@@ -2,8 +2,8 @@ package ru.sogya.avito.avito_test_task_trainee.home.data.api
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.sogya.avito.avito_test_task_trainee.home.data.api.request.MovieRequestData
-import ru.sogya.avito.avito_test_task_trainee.home.data.entity.MoviesResponse
+import ru.sogya.avito.avito_test_task_trainee.core.network.BaseResponse
+import ru.sogya.avito.avito_test_task_trainee.home.data.entity.MovieData
 
 interface HomeApi {
 
@@ -11,6 +11,8 @@ interface HomeApi {
     suspend fun getAllFilms(
         @Query("page") page: Int,
         @Query("limit") pageSize: Int,
-        @Query("") movieRequestData: MovieRequestData?,
-    ): MoviesResponse
+        @Query("ageRating") ageRating: List<String>?,
+        @Query("countries.name") countries: List<String>?,
+        @Query("year") year: List<String>?
+    ): BaseResponse<MovieData>
 }

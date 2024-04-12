@@ -5,8 +5,11 @@ import androidx.paging.PagingState
 import ru.sogya.avito.avito_test_task_trainee.home.domain.HomeRepository
 import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 
-class MoviesPaggingSource(
-    private val homeRepository: HomeRepository
+class MoviesPagingSource(
+    private val homeRepository: HomeRepository,
+    private val ageRating: List<String>,
+    private val countries: List<String>,
+    private val year: List<String>
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? =
@@ -19,7 +22,9 @@ class MoviesPaggingSource(
             val movies = homeRepository.getMoviesByParams(
                 page = currentPageNumber,
                 pageSize = pageSize,
-                null
+                ageRating = ageRating.ifEmpty { null },
+                countries = countries.ifEmpty { null },
+                year = year.ifEmpty { null }
             )
 
             val nextKey =

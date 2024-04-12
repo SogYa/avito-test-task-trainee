@@ -1,13 +1,13 @@
 package ru.sogya.avito.avito_test_task_trainee.home.domain
 
-import kotlinx.coroutines.flow.Flow
-import ru.sogya.avito.avito_test_task_trainee.film.domain.entity.Movie
-import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.MovieRequest
+import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 
 interface HomeRepository {
     suspend fun getMoviesByParams(
         page: Int,
         pageSize: Int,
-        request: MovieRequest?
+        ageRating: List<String>?,
+        countries: List<String>?,
+        year: List<String>?
     ): List<Movie>
 }
