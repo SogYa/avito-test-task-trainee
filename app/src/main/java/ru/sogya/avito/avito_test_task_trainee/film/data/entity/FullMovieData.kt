@@ -12,5 +12,7 @@ data class FullMovieData(
     override val rating: RatingData = RatingData(),
     override val genres: List<ResponseObject> = listOf(),
     override val countries: List<ResponseObject> = listOf(),
-    override val persons: List<PersonData> = listOf()
+    override val persons: List<PersonData> = listOf(),
+    override val poster: PosterData = PosterData(),
+    override val backdrop: PosterData = PosterData()
 ) : FullMovie

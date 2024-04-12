@@ -9,7 +9,9 @@ interface FullMovie {
     val name: String
     val description: String
     val rating: Rating
+    val poster: Poster
     val genres: List<ResponseObject>
     val countries: List<ResponseObject>
     val persons: List<Person>
+    val backdrop: Poster
 }
