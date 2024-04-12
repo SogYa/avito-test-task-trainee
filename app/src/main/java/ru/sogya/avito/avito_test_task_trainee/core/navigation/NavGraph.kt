@@ -31,7 +31,9 @@ fun NavGraph(
             route = "MovieScreen/{movieId}",
             arguments = listOf(navArgument("movieId") { type = NavType.IntType })
         ) { backStackEntry ->
-            MovieScreen(backStackEntry.arguments?.getInt("movieId"))
+            MovieScreen(backStackEntry.arguments?.getInt("movieId")) {
+                navController.popBackStack()
+            }
         }
     }
 }
