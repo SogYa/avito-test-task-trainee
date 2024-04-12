@@ -6,27 +6,33 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
-import ru.sogya.avito.avito_test_task_trainee.film.domain.entity.Movie
-import ru.sogya.avito.avito_test_task_trainee.home.data.MoviesPaggingSource
-import ru.sogya.avito.avito_test_task_trainee.home.data.api.request.MovieRequestData
+import ru.sogya.avito.avito_test_task_trainee.home.data.MoviesPagingSource
 import ru.sogya.avito.avito_test_task_trainee.home.domain.HomeRepository
+import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 
-interface GetMovieByParamsUseCase : (Int, Int, MovieRequestData?) -> Flow<PagingData<Movie>>
+interface GetMovieByParamsUseCase : (String, String, String) -> Flow<PagingData<Movie>>
 class GetMovieByParamsUseCaseImpl(private val homeRepository: HomeRepository) :
     GetMovieByParamsUseCase {
 
-    companion object {
+    private companion object {
         private const val INITIAL_PAGE_KEY = 1
         private const val PAGE_SIZE = 20
     }
 
     override fun invoke(
-        page: Int,
-        pageSize: Int,
-        movieRequest: MovieRequestData?
+        ageRating: String,
+        countries: String,
+        year: String
     ): Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(pageSize = PAGE_SIZE),
         initialKey = INITIAL_PAGE_KEY,
-        pagingSourceFactory = { MoviesPaggingSource(homeRepository) }
+        pagingSourceFactory = {
+            MoviesPagingSource(
+                homeRepository,
+                year = if (year.isEmpty()) listOf() else listOf(year),
+                ageRating = if (ageRating.isEmpty()) listOf() else listOf(ageRating),
+                countries = if (countries.isEmpty()) listOf() else listOf(countries)
+            )
+        }
     ).flow.flowOn(Dispatchers.IO)
 }
