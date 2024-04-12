@@ -9,7 +9,7 @@ import ru.sogya.avito.avito_test_task_trainee.film.data.entity.PosterData
 import ru.sogya.avito.avito_test_task_trainee.film.data.entity.ReviewData
 
 interface MovieApi {
-    @GET("movie/{movieId}")
+    @GET("movie/{id}")
     suspend fun getMovieById(@Path("id") movieId: Int): FullMovieData
 
     @GET("review")
