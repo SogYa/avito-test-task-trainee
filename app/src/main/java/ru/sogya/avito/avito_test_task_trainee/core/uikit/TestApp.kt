@@ -9,11 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.sogya.avito.avito_test_task_trainee.core.navigation.NavGraph
-import ru.sogya.avito.avito_test_task_trainee.ui.theme.AvitotesttasktraineeTheme
+import ru.sogya.avito.avito_test_task_trainee.ui.theme.AppTheme
 
 @Composable
 fun TestApp() {
-    AvitotesttasktraineeTheme {
+    AppTheme {
         CompositionLocalProvider {
             Box(
                 contentAlignment = Alignment.TopCenter,
