@@ -16,11 +16,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import ru.sogya.avito.avito_test_task_trainee.film.domain.entity.Person
+import ru.sogya.avito.avito_test_task_trainee.ui.theme.TestAppTheme
 
 @Composable
 fun PersonItem(
     person: Person
-) = Row(modifier = Modifier.padding(5.dp)) {
+) = Row(modifier = Modifier.padding(start = 5.dp, end = 10.dp).padding(vertical = 5.dp)) {
     AsyncImage(
         modifier = Modifier.size(width = 40.dp, height = 48.dp).clip(CircleShape),
         model = ImageRequest.Builder(LocalContext.current)
@@ -32,15 +33,18 @@ fun PersonItem(
     )
     Column(modifier = Modifier.padding(horizontal = 5.dp)) {
         Text(
-            text = person.name
+            text = person.name,
+            style = TestAppTheme.typography.p2
         )
         if (!person.description.isNullOrEmpty())
             Text(
                 modifier = Modifier.padding(vertical = 2.dp),
-                text = person.description!!
+                text = person.description!!,
+                style = TestAppTheme.typography.p4
             )
         Text(
-            text = person.profession
+            text = person.profession,
+            style = TestAppTheme.typography.p4Light
         )
     }
 }
