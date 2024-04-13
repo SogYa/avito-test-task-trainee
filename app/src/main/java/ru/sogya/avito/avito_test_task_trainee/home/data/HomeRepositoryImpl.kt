@@ -1,10 +1,8 @@
 package ru.sogya.avito.avito_test_task_trainee.home.data
 
-import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 import ru.sogya.avito.avito_test_task_trainee.home.data.api.HomeApi
-import ru.sogya.avito.avito_test_task_trainee.home.data.api.request.toData
 import ru.sogya.avito.avito_test_task_trainee.home.domain.HomeRepository
-import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.MovieRequest
+import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 
 class HomeRepositoryImpl(private val api: HomeApi) : HomeRepository {
     override suspend fun getMoviesByParams(
