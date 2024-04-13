@@ -23,20 +23,25 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.sogya.avito.avito_test_task_trainee.R
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.MovieExpandedItem
@@ -72,8 +77,15 @@ fun HomeScreen(
             }
         }
     }
-    LaunchedEffect(states) {
-        viewModel.handleIntents(HomeIntent.InitMovieList)
+
+    OnLifecycleEvent { _, event ->
+        if (event == Lifecycle.Event.ON_START) {
+            viewModel.handleIntents(HomeIntent.FilterByParams(
+                ageRating = states.value.ageRatingFilter,
+                countries = states.value.countiresFilter,
+                year = states.value.yearFilter
+            ))
+        }
     }
     OnEffect(effects = viewModel.effect) { effect ->
         when (effect) {
@@ -215,6 +227,22 @@ private fun FilterBottomSheet(
             ) {
                 Text("Применить")
             }
+        }
+    }
+}
+
+@Composable
+fun OnLifecycleEvent(onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) -> Unit) {
+    val eventHandler = rememberUpdatedState(onEvent)
+    val lifecycleOwner = rememberUpdatedState(LocalLifecycleOwner.current)
+    DisposableEffect(lifecycleOwner.value) {
+        val lifecycle = lifecycleOwner.value.lifecycle
+        val observer = LifecycleEventObserver { owner, event ->
+            eventHandler.value(owner, event)
+        }
+        lifecycle.addObserver(observer)
+        onDispose {
+            lifecycle.removeObserver(observer)
         }
     }
 }

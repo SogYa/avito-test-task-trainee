@@ -21,7 +21,6 @@ data class HomeViewState(
 ) : UDF.State
 
 sealed interface HomeIntent : UDF.Intent {
-    data object InitMovieList : HomeIntent
     data class SetSearchActive(val active: Boolean) : HomeIntent
     data class SearchByName(val name: String) : HomeIntent
     data object OpenFilterBottomSheet : HomeIntent

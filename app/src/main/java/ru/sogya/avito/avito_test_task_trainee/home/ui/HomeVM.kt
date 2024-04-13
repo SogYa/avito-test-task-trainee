@@ -19,7 +19,7 @@ class HomeVM @Inject constructor(
     private val getMovieByParamsUseCase: GetMovieByParamsUseCase,
     private val getAllSearchesHistoryUseCase: GetAllSearchesHistoryUseCase,
     private val searchByNameUseCase: SearchByNameUseCase,
-    private val insertSearchUseCase: InsertSearchUseCase
+    private val insertSearchUseCase: InsertSearchUseCase,
 ) : BaseViewModel<HomeViewState, HomeIntent, HomeEffect>(HomeViewState()) {
     private var searchHistory: List<Search> = listOf()
     private var searchJob: Job? = null
@@ -77,7 +77,7 @@ class HomeVM @Inject constructor(
                     setState {
                         copy(searchQuery = intent.name)
                     }
-                    if (intent.name.isNotEmpty()) {
+                    if (intent.name.isNotBlank()) {
                         searchJob?.cancel()
                         searchJob = viewModelScope.launch {
                             delay(Constants.SEARCH_DELAY)
@@ -89,6 +89,7 @@ class HomeVM @Inject constructor(
                             }
                         }
                     } else {
+                        searchJob?.cancel()
                         setState {
                             copy(searches = searchHistory)
                         }
@@ -105,16 +106,14 @@ class HomeVM @Inject constructor(
                         HomeEffect.NavigateToMovieScreen(intent.search.id)
                     }
                 }
-
-                HomeIntent.InitMovieList -> getMovieByParams()
             }
         }
     }
 
     private suspend fun getMovieByParams(
-        ageRating: String = "",
-        counties: String = "",
-        year: String = ""
+        ageRating: String,
+        counties: String,
+        year: String
     ) {
         setState {
             copy(
