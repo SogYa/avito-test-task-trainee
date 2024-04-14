@@ -15,12 +15,12 @@
 
 ## Стэк проекат
 
-Язык: kotlin
-Работа с сетью: Retrofit, OkHttp
-Многопоточность: Kotlin Coroutines/Flow
-View: Jetpack Compose
-Сериализаторы: Kotlinx Serialization, Gson
-Навигация: Jetpack Navigation
-Архитектура: MVI + UDF + Clean Architecture
-DI: Dagger 2 Hilt
-Локальная база данных: Room
+- Язык: kotlin
+- Работа с сетью: Retrofit, OkHttp
+- Многопоточность: Kotlin Coroutines/Flow
+- View: Jetpack Compose
+- Сериализаторы: Kotlinx Serialization, Gson
+- Навигация: Jetpack Navigation
+- Архитектура: MVI + UDF + Clean Architecture
+- DI: Dagger 2 Hilt
+- Локальная база данных: Room
