@@ -2,6 +2,7 @@ package ru.sogya.avito.avito_test_task_trainee.search.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import ru.sogya.avito.avito_test_task_trainee.search.data.entity.SearchData
@@ -9,7 +10,7 @@ import ru.sogya.avito.avito_test_task_trainee.search.data.util.Constants
 
 @Dao
 interface SearchDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSearch(searchData: SearchData)
 
     @Query("SELECT * FROM ${Constants.SEARCH_TABLE}")
