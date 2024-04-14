@@ -37,6 +37,7 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -48,6 +49,7 @@ import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.MovieExpanded
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.MovieSmallItem
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.OnEffect
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.VSpacer
+import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.WSpacer
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.itemsPaging
 import ru.sogya.avito.avito_test_task_trainee.ui.theme.TestAppTheme
 
@@ -99,7 +101,7 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
                 query = states.value.searchQuery,
                 placeholder = {
-                    Text(text = "Поиск по названию")
+                    Text(text = stringResource(R.string.search_hint))
                 },
                 trailingIcon = {
                     Icon(
@@ -140,7 +142,7 @@ fun HomeScreen(
                 ExtendedFloatingActionButton(
                     onClick = { viewModel.handleIntents(HomeIntent.OpenFilterBottomSheet) },
                     icon = { Icon(Icons.Filled.MoreVert, null) },
-                    text = { Text(text = "Фильтры") },
+                    text = { Text(text = stringResource(R.string.filter_button)) },
                 )
             }
         },
@@ -178,36 +180,36 @@ private fun FilterBottomSheet(
         onDismissRequest = { closeBottomSheet() },
     ) {
         Column(modifier = Modifier.fillMaxSize().padding(horizontal = 10.dp, vertical = 5.dp)) {
-            Text(text = "Год")
+            Text(text = stringResource(R.string.filter_year_title))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = state.value.yearFilter,
-                placeholder = { Text(text = "Укажите год") },
+                placeholder = { Text(text = stringResource(R.string.filter_year_hint)) },
                 onValueChange = { year ->
                     viewModel.handleIntents(HomeIntent.FilterByYear(year))
                 }
             )
             VSpacer(size = 10.dp)
-            Text(text = "Возрастной рейтинг")
+            Text(text = stringResource(R.string.filter_age_rating_title))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = state.value.ageRatingFilter,
-                placeholder = { Text(text = "Укажите рейтинг") },
+                placeholder = { Text(text = stringResource(R.string.filter_age_rating_hint)) },
                 onValueChange = { ageRating ->
                     viewModel.handleIntents(HomeIntent.FilterByAgeRating(ageRating))
                 }
             )
             VSpacer(size = 10.dp)
-            Text(text = "Страна")
+            Text(text = stringResource(R.string.filter_country_title))
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = state.value.countiresFilter,
-                placeholder = { Text(text = "Укажите страну") },
+                placeholder = { Text(text = stringResource(R.string.filter_country_hint)) },
                 onValueChange = { countries ->
                     viewModel.handleIntents(HomeIntent.FilterByCountries(countries))
                 }
             )
-            VSpacer(size = 10.dp)
+            WSpacer()
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
@@ -225,7 +227,7 @@ private fun FilterBottomSheet(
                     containerColor = TestAppTheme.colors.accent
                 )
             ) {
-                Text("Применить")
+                Text(stringResource(R.string.filter_button_accept))
             }
         }
     }

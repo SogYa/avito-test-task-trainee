@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,6 +40,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import ru.sogya.avito.avito_test_task_trainee.R
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.HSpacer
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.OnEffect
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.component.VSpacer
@@ -163,7 +165,7 @@ private fun MovieMainContent(
     Text(
         modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
         style = TestAppTheme.typography.h2,
-        text = "Актеры"
+        text = stringResource(R.string.movie_screen_actors_title)
     )
     LazyHorizontalGrid(
         modifier = Modifier.height(200.dp),
@@ -176,7 +178,7 @@ private fun MovieMainContent(
     Text(
         modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
         style = TestAppTheme.typography.h2,
-        text = "Постеры"
+        text = stringResource(R.string.movie_screen_posters_title)
     )
     LazyRow(modifier = Modifier.fillMaxWidth().heightIn(max = 500.dp)) {
         itemsPaging(posters) { poster, _ ->
@@ -195,6 +197,6 @@ private fun MovieMainContent(
     Text(
         modifier = Modifier.padding(top = 10.dp),
         style = TestAppTheme.typography.h2,
-        text = "Отзывы"
+        text = stringResource(R.string.movie_screen_reviews_title)
     )
 }

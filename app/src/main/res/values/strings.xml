@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">avito-test-task-trainee</string>
+    <string name="filter_button_accept">Применить</string>
+    <string name="filter_country_title">Страна</string>
+    <string name="filter_country_hint">Укажите страну</string>
+    <string name="filter_age_rating_title">Возрастной рейтинг</string>
+    <string name="filter_age_rating_hint">Укажите рейтинг</string>
+    <string name="filter_year_title">Год</string>
+    <string name="filter_year_hint">Укажите год</string>
+    <string name="filter_button">Фильтры</string>
+    <string name="search_hint">Поиск по названию</string>
+    <string name="movie_screen_actors_title">Актеры</string>
+    <string name="movie_screen_posters_title">Постеры</string>
+    <string name="movie_screen_reviews_title">Отзывы</string>
 </resources>

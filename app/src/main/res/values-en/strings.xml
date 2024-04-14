@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">avito-test-task-trainee</string>
+    <string name="filter_button_accept">Accept</string>
+    <string name="filter_country_title">Country</string>
+    <string name="filter_country_hint">Set country</string>
+    <string name="filter_age_rating_title">Age rating</string>
+    <string name="filter_age_rating_hint">Set age rating</string>
+    <string name="filter_year_title">Year</string>
+    <string name="filter_year_hint">Set year</string>
+    <string name="filter_button">Filters</string>
+    <string name="search_hint">Search movie by name</string>
+    <string name="movie_screen_actors_title">Actors</string>
+    <string name="movie_screen_posters_title">Posters</string>
+    <string name="movie_screen_reviews_title">Reviews</string>
+</resources>
