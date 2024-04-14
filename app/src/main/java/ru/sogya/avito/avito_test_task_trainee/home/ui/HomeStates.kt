@@ -1,19 +1,19 @@
 package ru.sogya.avito.avito_test_task_trainee.home.ui
 
 import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.UDF
 import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 import ru.sogya.avito.avito_test_task_trainee.search.domain.entity.Search
 
 data class HomeViewState(
-    val isLoading: Boolean = false,
+    val isLoading: Boolean = true,
     val searchQuery: String = "",
     val searchActive: Boolean = false,
     val isFilterBottomSheetOpen: Boolean = false,
     val searches: List<Search> = listOf(),
-    val movies: Flow<PagingData<Movie>> = MutableStateFlow(PagingData.empty()),
+    val movies: MutableStateFlow<PagingData<Movie>> = MutableStateFlow(PagingData.empty()),
     val ageRatingFilter: String = "",
     val countiresFilter: String = "",
     val yearFilter: String = "",

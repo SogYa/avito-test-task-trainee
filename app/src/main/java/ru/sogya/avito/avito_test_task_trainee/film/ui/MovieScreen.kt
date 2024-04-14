@@ -1,5 +1,6 @@
 package ru.sogya.avito.avito_test_task_trainee.film.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -71,7 +73,9 @@ fun MovieScreen(
         }
     }
     if (state.value.loading) {
-        println("load")
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(color = TestAppTheme.colors.accent)
+        }
     } else {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -99,9 +103,23 @@ fun MovieScreen(
                             )
                             MovieMainContent(this@with, posterItems)
                         }
-                        itemsPaging(reviewItems) { review, _ ->
-                            ReviewItem(review)
-                        }
+                        if (reviewItems.itemCount != 0)
+                            itemsPaging(reviewItems) { review, _ ->
+                                ReviewItem(review)
+                            }
+                        else
+                            item {
+                                Box(
+                                    modifier = Modifier.fillMaxWidth().heightIn(max = 200.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        modifier = Modifier.padding(25.dp),
+                                        style = TestAppTheme.typography.p1,
+                                        text = stringResource(R.string.movie_screen_reviews_placeholder)
+                                    )
+                                }
+                            }
                     }
                 }
             })
@@ -167,32 +185,55 @@ private fun MovieMainContent(
         style = TestAppTheme.typography.h2,
         text = stringResource(R.string.movie_screen_actors_title)
     )
-    LazyHorizontalGrid(
-        modifier = Modifier.height(200.dp),
-        rows = GridCells.Fixed(3)
+    Box(
+        modifier = Modifier.fillMaxWidth().heightIn(max = 200.dp),
+        contentAlignment = Alignment.Center
     ) {
-        items(movie.persons) { person ->
-            PersonItem(person)
-        }
+        if (movie.persons.isNotEmpty())
+            LazyHorizontalGrid(
+                modifier = Modifier.fillMaxSize(),
+                rows = GridCells.Fixed(3)
+            ) {
+                items(movie.persons) { person ->
+                    PersonItem(person)
+                }
+            }
+        else
+            Text(
+                modifier = Modifier.padding(25.dp),
+                style = TestAppTheme.typography.p1,
+                text = stringResource(R.string.movie_screen_actors_placeholder)
+            )
     }
     Text(
         modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
         style = TestAppTheme.typography.h2,
         text = stringResource(R.string.movie_screen_posters_title)
     )
-    LazyRow(modifier = Modifier.fillMaxWidth().heightIn(max = 500.dp)) {
-        itemsPaging(posters) { poster, _ ->
-            AsyncImage(
-                modifier = Modifier.width(100.dp).height(150.dp).padding(5.dp),
-                contentScale = ContentScale.Crop,
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(poster.url)
-                    .build(),
+    Box(
+        modifier = Modifier.fillMaxWidth().heightIn(max = 500.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        if (posters.itemCount != 0)
+            LazyRow(modifier = Modifier.fillMaxWidth()) {
+                itemsPaging(posters) { poster, _ ->
+                    AsyncImage(
+                        modifier = Modifier.width(100.dp).height(150.dp).padding(5.dp),
+                        contentScale = ContentScale.Crop,
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(poster.url)
+                            .build(),
 //            placeholder = painterResource(MR.images.employee_placheholer.drawableResId),
-                filterQuality = FilterQuality.High,
-                contentDescription = null
+                        filterQuality = FilterQuality.High,
+                        contentDescription = null
+                    )
+                }
+            } else
+            Text(
+                modifier = Modifier.padding(25.dp),
+                style = TestAppTheme.typography.p1,
+                text = stringResource(R.string.movie_screen_posters_placeholder)
             )
-        }
     }
     Text(
         modifier = Modifier.padding(top = 10.dp),

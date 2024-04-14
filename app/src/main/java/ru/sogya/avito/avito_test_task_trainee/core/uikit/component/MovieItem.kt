@@ -38,7 +38,6 @@ fun MovieExpandedItem(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(movie.poster.url)
                     .build(),
-//            placeholder = painterResource(MR.images.employee_placheholer.drawableResId),
                 filterQuality = FilterQuality.Medium,
                 contentDescription = null
             )
@@ -48,9 +47,14 @@ fun MovieExpandedItem(
             Text(
                 text = "${index + 1}. ${movie.name}"
             )
-            Text(
-                text = "${movie.alternativeName}, ${movie.year}"
-            )
+            if (movie.alternativeName != "null")
+                Text(
+                    text = "${movie.alternativeName}, ${movie.year}"
+                )
+            else
+                Text(
+                    text = "${movie.year}"
+                )
             Text(
                 text = "${movie.countries[0].name} · ${movie.genres[0].name}"
             )

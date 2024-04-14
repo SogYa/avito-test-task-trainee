@@ -1,7 +1,9 @@
 package ru.sogya.avito.avito_test_task_trainee.film.ui.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,7 +15,9 @@ import ru.sogya.avito.avito_test_task_trainee.ui.theme.TestAppTheme
 @Composable
 fun ReviewItem(
     review: Review
-) = Column(modifier = Modifier.padding(horizontal = 15.dp).padding(bottom = 20.dp)) {
+) = Column(
+    modifier = Modifier.padding(horizontal = 15.dp).padding(bottom = 20.dp)
+) {
     Text(
         text = review.title,
         style = TestAppTheme.typography.h4
