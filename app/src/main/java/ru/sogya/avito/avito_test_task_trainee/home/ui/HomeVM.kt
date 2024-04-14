@@ -1,6 +1,7 @@
 package ru.sogya.avito.avito_test_task_trainee.home.ui
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -115,11 +116,13 @@ class HomeVM @Inject constructor(
         counties: String,
         year: String
     ) {
-        setState {
-            copy(
-                movies = getMovieByParamsUseCase(ageRating, counties, year),
-                isLoading = false
-            )
+        getMovieByParamsUseCase.invoke(ageRating, counties, year).cachedIn(viewModelScope).collect {
+            uiState.value.movies.emit(value = it)
+            setState {
+                copy(
+                    isLoading = false
+                )
+            }
         }
     }
 }
