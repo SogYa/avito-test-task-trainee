@@ -10,6 +10,9 @@
     <string name="filter_button">Фильтры</string>
     <string name="search_hint">Поиск по названию</string>
     <string name="movie_screen_actors_title">Актеры</string>
+    <string name="movie_screen_actors_placeholder">Актеры отсутствуют</string>
     <string name="movie_screen_posters_title">Постеры</string>
+    <string name="movie_screen_posters_placeholder">Постеры отсутствуют</string>
     <string name="movie_screen_reviews_title">Отзывы</string>
+    <string name="movie_screen_reviews_placeholder">Отзывы отсутствуют</string>
 </resources>

@@ -11,6 +11,9 @@
     <string name="filter_button">Filters</string>
     <string name="search_hint">Search movie by name</string>
     <string name="movie_screen_actors_title">Actors</string>
+    <string name="movie_screen_actors_placeholder">Actors list is empty</string>
     <string name="movie_screen_posters_title">Posters</string>
+    <string name="movie_screen_posters_placeholder">Posters list is empty</string>
     <string name="movie_screen_reviews_title">Reviews</string>
+    <string name="movie_screen_reviews_placeholder">Reviews list is empty</string>
 </resources>
