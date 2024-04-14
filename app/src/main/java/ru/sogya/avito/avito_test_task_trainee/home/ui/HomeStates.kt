@@ -2,7 +2,6 @@ package ru.sogya.avito.avito_test_task_trainee.home.ui
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import ru.sogya.avito.avito_test_task_trainee.core.uikit.UDF
 import ru.sogya.avito.avito_test_task_trainee.home.domain.entity.Movie
 import ru.sogya.avito.avito_test_task_trainee.search.domain.entity.Search
